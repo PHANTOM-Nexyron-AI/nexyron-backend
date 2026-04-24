@@ -88,7 +88,12 @@ app.post("/ask", async (req, res) => {
     });
 
   } catch (err) {
-    res.json({ answer: "Error occurred, check backend logs." });
+catch (err){
+  console.log("ERROR:", err.response?.data || err.message);
+
+  res.json({
+    answer: "Error: " + (err.response?.data?.error?.message || err.message)
+  });
   }
 });
 
